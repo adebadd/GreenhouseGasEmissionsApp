@@ -1,0 +1,13 @@
+package com.example.greenhouseapp;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class GreenhouseGasEmissionsAppApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(GreenhouseGasEmissionsAppApplication.class, args);
+	}
+
+}
