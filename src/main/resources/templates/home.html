@@ -4,10 +4,37 @@
     <title>Home</title>
 </head>
 <body>
+    <h1>Greenhouse Gas Emissions</h1>
     <h1> Home Page</h1>
     <p th:text="'Hello, ' + ${name} + '!'"></p>
     <form th:action="@{/logout}" method="get">
         <button type="submit">Logout</button>
     </form>
+    <form th:action="@{/parse}" method="get">
+        <button type="submit">Parse Data</button>
+    </form>
+    <h2>Emission Data</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Scenario</th>
+                <th>Year</th>
+                <th>Gas Units</th>
+                <th>Predicted Value</th>
+                <th>Actual Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="emission : ${emissions}">
+                <td th:text="${emission.category}"></td>
+                <td th:text="${emission.scenario}"></td>
+                <td th:text="${emission.year}"></td>
+                <td th:text="${emission.gasUnits}"></td>
+                <td th:text="${emission.predictedValue}"></td>
+                <td th:text="${emission.actualValue}"></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
