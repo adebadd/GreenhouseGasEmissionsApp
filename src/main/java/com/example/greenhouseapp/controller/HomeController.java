@@ -3,6 +3,7 @@ package com.example.greenhouseapp.controller;
 import jakarta.servlet.http.HttpSession;
 import com.example.greenhouseapp.model.Emission;
 import com.example.greenhouseapp.parser.XmlParser;
+import com.example.greenhouseapp.parser.JsonParser;
 import com.example.greenhouseapp.repository.EmissionRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,12 @@ public class HomeController {
 
     @Autowired
     private EmissionRepository emissionRepository;
+
+    @Autowired
+    private XmlParser xmlParser;
+
+    @Autowired
+    private JsonParser jsonParser;
 
     @GetMapping("/home")
     public String showHomePage(HttpSession session, Model model) {
@@ -47,12 +54,13 @@ public class HomeController {
     @GetMapping("/parse")
     public String parseData(HttpSession session, Model model) {
         try {
-            XmlParser parser = new XmlParser();
-            List<Emission> emissions = parser.parseEmissions("src/main/resources/data/predicted-emissions.xml");
-
+            List<Emission> emissions  = xmlParser.parseEmissions("src/main/resources/data/predicted-emissions.xml");
             emissionRepository.saveAll(emissions);
 
-            model.addAttribute("message", "Data parsed and saved successfully!");
+            jsonParser.parseAndMatchJson("src/main/resources/data/actual-predictions.json");
+
+            List<Emission> updatedEmissions = emissionRepository.findAll();
+            model.addAttribute("emissions", updatedEmissions);
         } catch (Exception e) {
             e.printStackTrace();
         }

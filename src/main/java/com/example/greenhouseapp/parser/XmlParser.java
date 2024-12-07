@@ -1,6 +1,7 @@
 package com.example.greenhouseapp.parser;
 
 import com.example.greenhouseapp.model.Emission;
+import org.springframework.stereotype.Component;
 import org.w3c.dom.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -8,6 +9,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class XmlParser {
 
     public List<Emission> parseEmissions(String filePath) {
