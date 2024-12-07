@@ -3,36 +3,35 @@
 <head>
     <title>Home</title>
 </head>
-<body>
-    <h1>Greenhouse Gas Emissions</h1>
-    <h1> Home Page</h1>
-    <p th:text="'Hello, ' + ${name} + '!'"></p>
-    <form th:action="@{/logout}" method="get">
-        <button type="submit">Logout</button>
+<body style="font-family: Arial, sans-serif; background-color: #f0fff0;">
+    <h1 style="color: green;">Greenhouse Gas Emissions</h1>
+    <p style="color: green;" th:text="'Hello, ' + ${name} + '!'"></p>
+    <form th:action="@{/logout}" method="get" style="margin-bottom: 20px;">
+        <button type="submit" style="background-color: green; color: white; border: none; padding: 10px 20px; cursor: pointer;">Logout</button>
     </form>
-    <form th:action="@{/parse}" method="get">
-        <button type="submit">Parse Data</button>
+    <form th:action="@{/parse}" method="get" style="margin-bottom: 20px;">
+        <button type="submit" style="background-color: green; color: white; border: none; padding: 10px 20px; cursor: pointer;">Parse Data</button>
     </form>
-    <h2>Emission Data</h2>
-    <table border="1">
-        <thead>
+    <h2 style="color: green;">Emission Data</h2>
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <thead style="background-color: #e0ffe0;">
             <tr>
-                <th>Category</th>
-                <th>Scenario</th>
-                <th>Year</th>
-                <th>Gas Units</th>
-                <th>Predicted Value</th>
-                <th>Actual Value</th>
+                <th style="padding: 10px; text-align: left; color: green;">Category</th>
+                <th style="padding: 10px; text-align: left; color: green;">Scenario</th>
+                <th style="padding: 10px; text-align: left; color: green;">Year</th>
+                <th style="padding: 10px; text-align: left; color: green;">Gas Units</th>
+                <th style="padding: 10px; text-align: left; color: green;">Predicted Value</th>
+                <th style="padding: 10px; text-align: left; color: green;">Actual Value</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="emission : ${emissions}">
-                <td th:text="${emission.category}"></td>
-                <td th:text="${emission.scenario}"></td>
-                <td th:text="${emission.year}"></td>
-                <td th:text="${emission.gasUnits}"></td>
-                <td th:text="${emission.predictedValue}"></td>
-                <td th:text="${emission.actualValue}"></td>
+                <td style="padding: 10px; color: green;" th:text="${emission.category}"></td>
+                <td style="padding: 10px; color: green;" th:text="${emission.scenario}"></td>
+                <td style="padding: 10px; color: green;" th:text="${emission.year}"></td>
+                <td style="padding: 10px; color: green;" th:text="${emission.gasUnits}"></td>
+                <td style="padding: 10px; color: green;" th:text="${emission.predictedValue}"></td>
+                <td style="padding: 10px; color: green;" th:text="${emission.actualValue}"></td>
             </tr>
         </tbody>
     </table>

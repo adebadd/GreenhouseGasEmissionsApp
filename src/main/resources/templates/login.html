@@ -3,17 +3,17 @@
 <head>
     <title>Login Page</title>
 </head>
-<body>
-    <h1>Login</h1>
-    <form th:action="@{/login}" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="username" name="name">
+<body style="font-family: Arial, sans-serif; background-color: #f0fff0;">
+    <h1 style="color: green;">Login</h1>
+    <form th:action="@{/login}" method="post" style="max-width: 300px;">
+        <label for="name" style="color: green;">Name:</label>
+        <input type="text" id="username" name="name" style="width: 100%; padding: 8px; margin: 5px 0; border: 1px solid green; border-radius: 4px;">
         <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password">
+        <label for="password" style="color: green;">Password:</label>
+        <input type="password" id="password" name="password" style="width: 100%; padding: 8px; margin: 5px 0; border: 1px solid green; border-radius: 4px;">
         <br>
-        <button type="submit">Login</button>
+        <button type="submit" style="background-color: green; color: white; border: none; padding: 10px 20px; cursor: pointer;">Login</button>
     </form>
-    <p th:text="${errorMessage}"></p>
+    <p style="color: green;" th:text="${errorMessage}"></p>
 </body>
 </html>
