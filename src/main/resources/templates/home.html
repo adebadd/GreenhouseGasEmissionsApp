@@ -12,6 +12,15 @@
     <form th:action="@{/parse}" method="get" style="margin-bottom: 20px;">
         <button type="submit" style="background-color: green; color: white; border: none; padding: 10px 20px; cursor: pointer;">Parse Data</button>
     </form>
+    <div style="margin-bottom: 20px;">
+        <a href="/api/emissions" style="text-decoration: none;">
+            <button type="button" style="background-color: green; color: white; border: none; padding: 10px 20px; cursor: pointer;">View Emissions JSON</button>
+        </a>
+        <a href="/api/users" style="text-decoration: none;">
+            <button type="button" style="background-color: green; color: white; border: none; padding: 10px 20px; cursor: pointer;">View Users JSON</button>
+        </a>
+    </div>
+    
     <h2 style="color: green;">Emission Data</h2>
     <table border="1" style="border-collapse: collapse; width: 100%;">
         <thead style="background-color: #e0ffe0;">
@@ -22,6 +31,7 @@
                 <th style="padding: 10px; text-align: left; color: green;">Gas Units</th>
                 <th style="padding: 10px; text-align: left; color: green;">Predicted Value</th>
                 <th style="padding: 10px; text-align: left; color: green;">Actual Value</th>
+                <th style="padding: 10px; text-align: left; color: green;">Description</th>
             </tr>
         </thead>
         <tbody>
@@ -32,6 +42,7 @@
                 <td style="padding: 10px; color: green;" th:text="${emission.gasUnits}"></td>
                 <td style="padding: 10px; color: green;" th:text="${emission.predictedValue}"></td>
                 <td style="padding: 10px; color: green;" th:text="${emission.actualValue}"></td>
+                <td style="padding: 10px; color: green;" th:text="${emission.description}"></td>
             </tr>
         </tbody>
     </table>
