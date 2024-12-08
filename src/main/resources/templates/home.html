@@ -6,9 +6,11 @@
 <body style="font-family: Arial, sans-serif; background-color: #f0fff0;">
     <h1 style="color: green;">Greenhouse Gas Emissions</h1>
     <p style="color: green;" th:text="'Hello, ' + ${name} + '!'"></p>
-    <form th:action="@{/logout}" method="get" style="margin-bottom: 20px;">
-        <button type="submit" style="background-color: green; color: white; border: none; padding: 10px 20px; cursor: pointer;">Logout</button>
-    </form>
+
+    <div style="float: right; margin-right: 60px;">
+        <img src="https://www.un.org/sites/un2.un.org/files/2021/08/feeling-the-heat.jpg" 
+          style="max-width: 400px; border: 1px solid green;">
+    </div>
     <form th:action="@{/parse}" method="get" style="margin-bottom: 20px;">
         <button type="submit" style="background-color: green; color: white; border: none; padding: 10px 20px; cursor: pointer;">Parse Data</button>
     </form>
@@ -22,6 +24,16 @@
     </div>
     
     <h2 style="color: green;">Emission Data</h2>
+    
+    <form th:action="@{/home}" method="get" style="margin-bottom: 20px;">
+        <label for="categoryFilter" style="color: green;">Filter Emissions by category:</label>
+        <select id="categoryFilter" name="category" style="padding: 5px;">
+            <option value="" th:text="'All'" th:selected="${category == null || category == ''}"></option>
+            <option th:each="cat : ${categories}" th:value="${cat}" th:text="${cat}" th:selected="${cat == category}"></option>
+        </select>
+        <button type="submit" style="background-color: green; color: white; border: none; padding: 5px 10px; cursor: pointer;">Filter</button>
+    </form>
+    
     <table border="1" style="border-collapse: collapse; width: 100%;">
         <thead style="background-color: #e0ffe0;">
             <tr>
@@ -46,5 +58,8 @@
             </tr>
         </tbody>
     </table>
+        <form th:action="@{/logout}" method="get" style="margin-top: 20px;">
+        <button type="submit" style="background-color: green; color: white; border: none; padding: 10px 20px; cursor: pointer;">Logout</button>
+    </form>
 </body>
 </html>

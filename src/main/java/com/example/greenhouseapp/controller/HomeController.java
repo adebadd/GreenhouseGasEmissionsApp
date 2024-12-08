@@ -9,7 +9,9 @@ import com.example.greenhouseapp.service.EmissionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -27,13 +29,29 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    public String showHomePage(HttpSession session, Model model) {
+    public String showHomePage(@RequestParam(required = false) String category, HttpSession session, Model model) {
         String name = (String) session.getAttribute("name");
         if (name != null) {
             model.addAttribute("name", name);
 
             List<Emission> emissions = emissionService.getAllEmissions();
-            model.addAttribute("emissions", emissions);
+            List<Emission> filteredEmissions = new ArrayList<>();
+            List<String> categories = new ArrayList<>();
+
+            for (int i = 0; i < emissions.size(); i++) {
+                Emission emission = emissions.get(i);
+
+                if (!categories.contains(emission.getCategory())) {
+                    categories.add(emission.getCategory());
+                }
+                if (category == null || category.isEmpty() || emission.getCategory().equalsIgnoreCase(category)) {
+                    filteredEmissions.add(emission);
+                }
+            }
+
+            model.addAttribute("emissions", filteredEmissions);
+            model.addAttribute("categories", categories);
+            model.addAttribute("category", category);
 
             return "home";
         } else {
