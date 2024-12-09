@@ -74,6 +74,9 @@ public class HomeController {
 
     @GetMapping("/parse")
     public String parseData(HttpSession session, Model model) {
+        if (session.getAttribute("name") == null) {
+            return "redirect:/login";
+        }
         try {
             List<Emission> emissions = xmlParser.parseEmissions("src/main/resources/data/predicted-emissions.xml");
             emissions.forEach(emissionService::saveEmission);
