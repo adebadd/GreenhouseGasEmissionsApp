@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpSession;
 import com.example.greenhouseapp.model.Emission;
 import com.example.greenhouseapp.parser.XmlParser;
 import com.example.greenhouseapp.parser.JsonParser;
+import com.example.greenhouseapp.parser.HtmlParser;
 import com.example.greenhouseapp.service.EmissionService;
 
 import org.springframework.stereotype.Controller;
@@ -20,12 +21,13 @@ public class HomeController {
     private final EmissionService emissionService;
     private final XmlParser xmlParser;
     private final JsonParser jsonParser;
+    private final HtmlParser htmlParser;
 
-    public HomeController(EmissionService emissionService, XmlParser xmlParser, JsonParser jsonParser) {
-        super();
+        public HomeController(EmissionService emissionService, XmlParser xmlParser, JsonParser jsonParser, HtmlParser htmlParser) {
         this.emissionService = emissionService;
         this.xmlParser = xmlParser;
         this.jsonParser = jsonParser;
+        this.htmlParser = htmlParser;
     }
 
     @GetMapping("/home")
@@ -77,6 +79,8 @@ public class HomeController {
             emissions.forEach(emissionService::saveEmission);
 
             jsonParser.parseAndMatchJson("src/main/resources/data/actual-predictions.json");
+
+            htmlParser.parseHtmlForDescriptions("https://www.ipcc-nggip.iges.or.jp/EFDB/find_ef.php");
 
             List<Emission> updatedEmissions = emissionService.getAllEmissions();
             model.addAttribute("emissions", updatedEmissions);

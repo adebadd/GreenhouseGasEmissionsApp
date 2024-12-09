@@ -20,7 +20,7 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     public void registerUser(String name, String password) {
-        if (userRepository.findByName(name).isPresent()) {
+        if (userRepository.findByName(name) != null) {
             throw new IllegalArgumentException("Username already exists");
         }
 

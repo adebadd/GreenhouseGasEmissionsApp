@@ -7,8 +7,6 @@ import com.example.greenhouseapp.service.LoginService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class LoginServiceImpl implements LoginService {
 
@@ -22,9 +20,8 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public boolean authenticate(String name, String password) {
-        Optional<User> optionalUser = userRepository.findByName(name);
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
+        User user = userRepository.findByName(name);
+        if (user != null) {
             return passwordEncoder.matches(password, user.getPassword());
         }
         return false;
