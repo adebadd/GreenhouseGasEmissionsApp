@@ -90,7 +90,7 @@ A full-stack Java Spring Boot application that displays Ireland’s greenhouse g
 
 ## 📸 Demo
 
-👉 [Watch the demo on YouTube]((https://www.youtube.com/watch?v=hAQKmXQBbtQ))
+👉 [Watch the demo on YouTube](https://www.youtube.com/watch?v=hAQKmXQBbtQ)
 
 
 ## 📜 License
